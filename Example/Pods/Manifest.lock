@@ -1,0 +1,16 @@
+PODS:
+  - Yson (0.1.0)
+
+DEPENDENCIES:
+  - Yson (from `../`)
+
+EXTERNAL SOURCES:
+  Yson:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Yson: f9435d4d7c0f0f1b298747cfc36b8ab968bfd59e
+
+PODFILE CHECKSUM: c4471a3de1058a13ff2a09b588e98124c483d2e5
+
+COCOAPODS: 1.6.0
