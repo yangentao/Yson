@@ -7,15 +7,18 @@
 //
 
 import UIKit
-
+import Yson
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    }
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-
+		let a = YsonObject()
+		a.put("name", "Yang")
+		a.put("age", 99)
+		let s = a.yson
+		print(s)
+	}
 
 }
