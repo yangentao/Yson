@@ -6,9 +6,9 @@
 import Foundation
 import UIKit
 
-extension Yson {
+public extension Yson {
 
-	static func toYsonObject<T: Encodable>(_ v: T) -> YsonObject? {
+	public static func toYsonObject<T: Encodable>(_ v: T) -> YsonObject? {
 		do {
 			let v: YsonValue? = try Yson.encode(v)
 			return v as? YsonObject
@@ -18,7 +18,7 @@ extension Yson {
 		}
 	}
 
-	static func toYson<T: Encodable>(_ v: T) -> YsonValue? {
+	public static func toYson<T: Encodable>(_ v: T) -> YsonValue? {
 		do {
 			let v: YsonValue? = try Yson.encode(v)
 			return v
@@ -28,7 +28,7 @@ extension Yson {
 		}
 	}
 
-	static func encode<T: Encodable>(_ v: T) throws -> YsonValue? {
+	public static func encode<T: Encodable>(_ v: T) throws -> YsonValue? {
 		let ye = YsonEncoder()
 		return try ye.encode(v)
 //		let e = JSONEncoder()
@@ -42,9 +42,9 @@ extension Yson {
 
 }
 
-extension Yson {
+public extension Yson {
 
-	static func fromYson<T: Decodable>(_ type: T.Type, _ jsonValue: YsonValue) -> T? {
+	public static func fromYson<T: Decodable>(_ type: T.Type, _ jsonValue: YsonValue) -> T? {
 		do {
 			return try self.decode(type, jsonValue)
 		} catch {
@@ -53,7 +53,7 @@ extension Yson {
 		}
 	}
 
-	static func decode<T: Decodable>(_ type: T.Type, _ jsonValue: YsonValue) throws -> T {
+	public static func decode<T: Decodable>(_ type: T.Type, _ jsonValue: YsonValue) throws -> T {
 		return try YsonDecoder().decode(type, from: jsonValue)
 //		let s = jsonValue.yson()
 //		let d = JSONDecoder()
@@ -62,17 +62,17 @@ extension Yson {
 
 }
 
-extension YsonValue {
+public extension YsonValue {
 
-	func toModel<V: Decodable>() -> V? {
+	public func toModel<V: Decodable>() -> V? {
 		return Yson.fromYson(V.self, self)
 	}
 
 }
 
-extension Encodable {
+public extension Encodable {
 
-	var toYsonValue: YsonValue {
+	public var toYsonValue: YsonValue {
 		do {
 			let y = try Yson.encode(self)
 			return y!
@@ -82,11 +82,11 @@ extension Encodable {
 		}
 	}
 
-	var toYsonObject: YsonObject {
+	public var toYsonObject: YsonObject {
 		return self.toYsonValue as! YsonObject
 	}
 
-	func dumpYson() {
+	public func dumpYson() {
 		logd(self.toYsonValue.yson)
 	}
 }

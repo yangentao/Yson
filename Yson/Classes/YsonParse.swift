@@ -53,7 +53,7 @@ fileprivate extension Character {
 	}
 }
 
-public class YParser {
+class YParser {
 	fileprivate let data: [Character]
 	fileprivate let text: String
 
@@ -69,7 +69,7 @@ public class YParser {
 
 	}
 
-	public static func parseValue(_ json: String) -> YsonValue? {
+	static func parseValue(_ json: String) -> YsonValue? {
 		let p = YParser(json)
 		if let v = try? p.parse(), p.shouldEnd() {
 			return v
@@ -77,7 +77,7 @@ public class YParser {
 		return nil
 	}
 
-	public static func parseArray(_ json: String) -> YsonArray? {
+	static func parseArray(_ json: String) -> YsonArray? {
 		let v = self.parseValue(json)
 		if let a = v as? YsonArray {
 			return a
@@ -85,7 +85,7 @@ public class YParser {
 		return nil
 	}
 
-	public static func parseObject(_ json: String) -> YsonObject? {
+	static func parseObject(_ json: String) -> YsonObject? {
 		let v = self.parseValue(json)
 		if let a = v as? YsonObject {
 			return a

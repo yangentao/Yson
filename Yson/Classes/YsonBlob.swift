@@ -8,9 +8,9 @@ import UIKit
 
 //用于encode/decode
 public class YsonBlob: YsonValue {
-	var data: Data
+	public var data: Data
 
-	init(_ data: Data) {
+	public init(_ data: Data) {
 		self.data = data
 		super.init()
 	}

@@ -34,7 +34,7 @@ public class YsonObject: YsonValue, ExpressibleByDictionaryLiteral {
 		self.data = a.data
 	}
 
-	subscript(key: String) -> YsonValue {
+	public subscript(key: String) -> YsonValue {
 		get {
 			return self.data[key] ?? YsonNull.inst
 		}

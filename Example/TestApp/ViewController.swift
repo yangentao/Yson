@@ -9,6 +9,11 @@
 import UIKit
 import Yson
 
+class Person: Codable {
+	var name: String = ""
+	var age: Int = 0
+}
+
 class ViewController: UIViewController {
 
 	override func viewDidLoad() {
@@ -19,6 +24,12 @@ class ViewController: UIViewController {
 		a.put("age", 99)
 		let s = a.yson
 		print(s)
+		if let p: Person = Yson.fromYson(Person.self, a) {
+			print(p.name)
+			print(p.age)
+			let ss = p.toYsonObject.yson
+			print(ss)
+		}
 	}
 
 }

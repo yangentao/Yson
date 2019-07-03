@@ -8,7 +8,7 @@ import UIKit
 
 class YsonEncoder {
 
-	public enum DateEncodingStrategy {
+	enum DateEncodingStrategy {
 		/// Defer to `Date` for choosing an encoding. This is the default strategy.
 		case deferredToDate
 
@@ -27,7 +27,7 @@ class YsonEncoder {
 		case custom((Date, Encoder) throws -> Void)
 	}
 
-	public enum NonConformingFloatEncodingStrategy {
+	enum NonConformingFloatEncodingStrategy {
 		/// Throw upon encountering non-conforming values. This is the default strategy.
 		case `throw`
 
@@ -51,7 +51,7 @@ class YsonEncoder {
 		return _Options(dateEncodingStrategy: dateEncodingStrategy, nonConformingFloatEncodingStrategy: nonConformingFloatEncodingStrategy, userInfo: userInfo)
 	}
 
-	public init() {
+	init() {
 	}
 
 	func encode<T: Encodable>(_ value: T) throws -> YsonValue {
@@ -67,8 +67,8 @@ class YsonEncoder {
 fileprivate class _YsonEncoder: Encoder {
 	fileprivate var storage: _YsonEncodingStorage = _YsonEncodingStorage()
 	fileprivate let options: YsonEncoder._Options
-	public var codingPath: [CodingKey]
-	public var userInfo: [CodingUserInfoKey: Any] {
+	var codingPath: [CodingKey]
+	var userInfo: [CodingUserInfoKey: Any] {
 		return self.options.userInfo
 	}
 
@@ -90,7 +90,7 @@ fileprivate class _YsonEncoder: Encoder {
 		return self.storage.count == self.codingPath.count
 	}
 
-	public func container<Key>(keyedBy: Key.Type) -> KeyedEncodingContainer<Key> {
+	func container<Key>(keyedBy: Key.Type) -> KeyedEncodingContainer<Key> {
 		let topContainer: YsonObject
 		if self.canEncodeNewValue {
 			topContainer = self.storage.pushObject()
@@ -104,7 +104,7 @@ fileprivate class _YsonEncoder: Encoder {
 		return KeyedEncodingContainer(container)
 	}
 
-	public func unkeyedContainer() -> UnkeyedEncodingContainer {
+	func unkeyedContainer() -> UnkeyedEncodingContainer {
 		let topContainer: YsonArray
 		if self.canEncodeNewValue {
 			topContainer = self.storage.pushArray()
@@ -117,7 +117,7 @@ fileprivate class _YsonEncoder: Encoder {
 		return _YsonArrayEncodingContainer(referencing: self, codingPath: self.codingPath, wrapping: topContainer)
 	}
 
-	public func singleValueContainer() -> SingleValueEncodingContainer {
+	func singleValueContainer() -> SingleValueEncodingContainer {
 		return self
 	}
 }
@@ -168,59 +168,59 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 
 	// MARK: - KeyedEncodingContainerProtocol Methods
 
-	public mutating func encodeNil(forKey key: Key) throws {
+	mutating func encodeNil(forKey key: Key) throws {
 		self.container[key.stringValue] = YsonNull.inst
 	}
 
-	public mutating func encode(_ value: Bool, forKey key: Key) throws {
+	mutating func encode(_ value: Bool, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Int, forKey key: Key) throws {
+	mutating func encode(_ value: Int, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Int8, forKey key: Key) throws {
+	mutating func encode(_ value: Int8, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Int16, forKey key: Key) throws {
+	mutating func encode(_ value: Int16, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Int32, forKey key: Key) throws {
+	mutating func encode(_ value: Int32, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Int64, forKey key: Key) throws {
+	mutating func encode(_ value: Int64, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: UInt, forKey key: Key) throws {
+	mutating func encode(_ value: UInt, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: UInt8, forKey key: Key) throws {
+	mutating func encode(_ value: UInt8, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: UInt16, forKey key: Key) throws {
+	mutating func encode(_ value: UInt16, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: UInt32, forKey key: Key) throws {
+	mutating func encode(_ value: UInt32, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: UInt64, forKey key: Key) throws {
+	mutating func encode(_ value: UInt64, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: String, forKey key: Key) throws {
+	mutating func encode(_ value: String, forKey key: Key) throws {
 		self.container[key.stringValue] = self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Float, forKey key: Key) throws {
+	mutating func encode(_ value: Float, forKey key: Key) throws {
 		// Since the float may be invalid and throw, the coding path needs to contain this key.
 		self.encoder.codingPath.append(key)
 		defer {
@@ -229,7 +229,7 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 		self.container[key.stringValue] = try self.encoder.box(value)
 	}
 
-	public mutating func encode(_ value: Double, forKey key: Key) throws {
+	mutating func encode(_ value: Double, forKey key: Key) throws {
 		// Since the double may be invalid and throw, the coding path needs to contain this key.
 		self.encoder.codingPath.append(key)
 		defer {
@@ -238,7 +238,7 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 		self.container[key.stringValue] = try self.encoder.box(value)
 	}
 
-	public mutating func encode<T: Encodable>(_ value: T, forKey key: Key) throws {
+	mutating func encode<T: Encodable>(_ value: T, forKey key: Key) throws {
 		self.encoder.codingPath.append(key)
 		defer {
 			self.encoder.codingPath.removeLast()
@@ -246,7 +246,7 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 		self.container[key.stringValue] = try self.encoder.box(value)
 	}
 
-	public mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type, forKey key: Key) -> KeyedEncodingContainer<NestedKey> {
+	mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type, forKey key: Key) -> KeyedEncodingContainer<NestedKey> {
 		let dictionary = YsonObject()
 		self.container[key.stringValue] = dictionary
 
@@ -259,7 +259,7 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 		return KeyedEncodingContainer(container)
 	}
 
-	public mutating func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer {
+	mutating func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer {
 		let array = YsonArray()
 		self.container[key.stringValue] = array
 
@@ -270,11 +270,11 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 		return _YsonArrayEncodingContainer(referencing: self.encoder, codingPath: self.codingPath, wrapping: array)
 	}
 
-	public mutating func superEncoder() -> Encoder {
+	mutating func superEncoder() -> Encoder {
 		return _YsonReferencingEncoder(referencing: self.encoder, at: _YsonKey.super, wrapping: self.container)
 	}
 
-	public mutating func superEncoder(forKey key: Key) -> Encoder {
+	mutating func superEncoder(forKey key: Key) -> Encoder {
 		return _YsonReferencingEncoder(referencing: self.encoder, at: key, wrapping: self.container)
 	}
 }
@@ -284,7 +284,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 	private let container: YsonArray
 	private(set) public var codingPath: [CodingKey]
 
-	public var count: Int {
+	var count: Int {
 		return self.container.count
 	}
 
@@ -294,59 +294,59 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 		self.container = container
 	}
 
-	public mutating func encodeNil() throws {
+	mutating func encodeNil() throws {
 		self.container.add(YsonNull.inst)
 	}
 
-	public mutating func encode(_ value: Bool) throws {
+	mutating func encode(_ value: Bool) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Int) throws {
+	mutating func encode(_ value: Int) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Int8) throws {
+	mutating func encode(_ value: Int8) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Int16) throws {
+	mutating func encode(_ value: Int16) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Int32) throws {
+	mutating func encode(_ value: Int32) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Int64) throws {
+	mutating func encode(_ value: Int64) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: UInt) throws {
+	mutating func encode(_ value: UInt) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: UInt8) throws {
+	mutating func encode(_ value: UInt8) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: UInt16) throws {
+	mutating func encode(_ value: UInt16) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: UInt32) throws {
+	mutating func encode(_ value: UInt32) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: UInt64) throws {
+	mutating func encode(_ value: UInt64) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: String) throws {
+	mutating func encode(_ value: String) throws {
 		self.container.add(self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Float) throws {
+	mutating func encode(_ value: Float) throws {
 		// Since the float may be invalid and throw, the coding path needs to contain this key.
 		self.encoder.codingPath.append(_YsonKey(index: self.count))
 		defer {
@@ -355,7 +355,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 		self.container.add(try self.encoder.box(value))
 	}
 
-	public mutating func encode(_ value: Double) throws {
+	mutating func encode(_ value: Double) throws {
 		// Since the double may be invalid and throw, the coding path needs to contain this key.
 		self.encoder.codingPath.append(_YsonKey(index: self.count))
 		defer {
@@ -364,7 +364,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 		self.container.add(try self.encoder.box(value))
 	}
 
-	public mutating func encode<T: Encodable>(_ value: T) throws {
+	mutating func encode<T: Encodable>(_ value: T) throws {
 		self.encoder.codingPath.append(_YsonKey(index: self.count))
 		defer {
 			self.encoder.codingPath.removeLast()
@@ -372,7 +372,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 		self.container.add(try self.encoder.box(value))
 	}
 
-	public mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer<NestedKey> {
+	mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer<NestedKey> {
 		self.codingPath.append(_YsonKey(index: self.count))
 		defer {
 			self.codingPath.removeLast()
@@ -383,7 +383,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 		return KeyedEncodingContainer(container)
 	}
 
-	public mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
+	mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
 		self.codingPath.append(_YsonKey(index: self.count))
 		defer {
 			self.codingPath.removeLast()
@@ -393,7 +393,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 		return _YsonArrayEncodingContainer(referencing: self.encoder, codingPath: self.codingPath, wrapping: array)
 	}
 
-	public mutating func superEncoder() -> Encoder {
+	mutating func superEncoder() -> Encoder {
 		return _YsonReferencingEncoder(referencing: self.encoder, at: self.container.count, wrapping: self.container)
 	}
 }
@@ -403,82 +403,82 @@ extension _YsonEncoder: SingleValueEncodingContainer {
 		precondition(self.canEncodeNewValue, "Attempt to encode value through single value container when previously value already encoded.")
 	}
 
-	public func encodeNil() throws {
+	func encodeNil() throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: YsonNull.inst)
 	}
 
-	public func encode(_ value: Bool) throws {
+	func encode(_ value: Bool) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Int) throws {
+	func encode(_ value: Int) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Int8) throws {
+	func encode(_ value: Int8) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Int16) throws {
+	func encode(_ value: Int16) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Int32) throws {
+	func encode(_ value: Int32) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Int64) throws {
+	func encode(_ value: Int64) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: UInt) throws {
+	func encode(_ value: UInt) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: UInt8) throws {
+	func encode(_ value: UInt8) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: UInt16) throws {
+	func encode(_ value: UInt16) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: UInt32) throws {
+	func encode(_ value: UInt32) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: UInt64) throws {
+	func encode(_ value: UInt64) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: String) throws {
+	func encode(_ value: String) throws {
 		assertCanEncodeNewValue()
 		self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Float) throws {
+	func encode(_ value: Float) throws {
 		assertCanEncodeNewValue()
 		try self.storage.push(container: self.box(value))
 	}
 
-	public func encode(_ value: Double) throws {
+	func encode(_ value: Double) throws {
 		assertCanEncodeNewValue()
 		try self.storage.push(container: self.box(value))
 	}
 
-	public func encode<T: Encodable>(_ value: T) throws {
+	func encode<T: Encodable>(_ value: T) throws {
 		assertCanEncodeNewValue()
 		try self.storage.push(container: self.box(value))
 	}
@@ -703,15 +703,15 @@ fileprivate class _YsonReferencingEncoder: _YsonEncoder {
 }
 
 struct _YsonKey: CodingKey {
-	public var stringValue: String
-	public var intValue: Int?
+	var stringValue: String
+	var intValue: Int?
 
-	public init?(stringValue: String) {
+	init?(stringValue: String) {
 		self.stringValue = stringValue
 		self.intValue = nil
 	}
 
-	public init?(intValue: Int) {
+	init?(intValue: Int) {
 		self.stringValue = "\(intValue)"
 		self.intValue = intValue
 	}

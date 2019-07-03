@@ -30,7 +30,7 @@ public class YsonArray: YsonValue, ExpressibleByArrayLiteral {
 		self.data = a.data
 	}
 
-	subscript(index: Int) -> YsonValue {
+	public subscript(index: Int) -> YsonValue {
 		get {
 			if index < self.data.count {
 				return self.data[index]
