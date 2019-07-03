@@ -7,7 +7,35 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+```kotlin
+class Person: Codable {
+	var name: String = ""
+	var age: Int = 0
+}
+```
+```kotlin
+let jsonStr = """
+		          {"name":"Yang","age":99}
+		          """
+if let a = YsonObject(jsonStr) {
+  a.put("age", 100)
+	let s = a.yson
+	print(s)
+	if let p: Person = Yson.fromYson(Person.self, a) {
+	  print(p.name)
+		print(p.age)
+		let ss = p.toYsonObject.yson
+		print(ss)
+	}
+ }
+```
+Output:
+
+{"name":"Yang","age":100}   
+Yang   
+100   
+{"name":"Yang","age":100}   
+
 
 ## Requirements
 
