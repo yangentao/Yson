@@ -19,16 +19,18 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let a = YsonObject()
-		a.put("name", "Yang")
-		a.put("age", 99)
-		let s = a.yson
-		print(s)
-		if let p: Person = Yson.fromYson(Person.self, a) {
-			print(p.name)
-			print(p.age)
-			let ss = p.toYsonObject.yson
-			print(ss)
+		if let a = YsonObject("""
+		                      {"name":"Yang","age":99}
+		                      """) {
+			a.put("age", 100)
+			let s = a.yson
+			print(s)
+			if let p: Person = Yson.fromYson(Person.self, a) {
+				print(p.name)
+				print(p.age)
+				let ss = p.toYsonObject.yson
+				print(ss)
+			}
 		}
 	}
 
