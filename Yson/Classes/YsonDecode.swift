@@ -561,7 +561,7 @@ extension _YsonDecoder: SingleValueDecodingContainer {
 }
 
 fileprivate extension _YsonDecoder {
-	fileprivate func unbox(_ value: YsonValue, as type: Bool.Type) throws -> Bool? {
+	  func unbox(_ value: YsonValue, as type: Bool.Type) throws -> Bool? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -584,7 +584,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonBool.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Int.Type) throws -> Int? {
+	  func unbox(_ value: YsonValue, as type: Int.Type) throws -> Int? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -599,7 +599,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Int8.Type) throws -> Int8? {
+	  func unbox(_ value: YsonValue, as type: Int8.Type) throws -> Int8? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -613,7 +613,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Int16.Type) throws -> Int16? {
+	  func unbox(_ value: YsonValue, as type: Int16.Type) throws -> Int16? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -627,7 +627,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Int32.Type) throws -> Int32? {
+	  func unbox(_ value: YsonValue, as type: Int32.Type) throws -> Int32? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -641,7 +641,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Int64.Type) throws -> Int64? {
+	  func unbox(_ value: YsonValue, as type: Int64.Type) throws -> Int64? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -655,7 +655,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: UInt.Type) throws -> UInt? {
+	  func unbox(_ value: YsonValue, as type: UInt.Type) throws -> UInt? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -669,7 +669,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: UInt8.Type) throws -> UInt8? {
+	  func unbox(_ value: YsonValue, as type: UInt8.Type) throws -> UInt8? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -683,7 +683,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: UInt16.Type) throws -> UInt16? {
+	  func unbox(_ value: YsonValue, as type: UInt16.Type) throws -> UInt16? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -697,7 +697,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: UInt32.Type) throws -> UInt32? {
+	  func unbox(_ value: YsonValue, as type: UInt32.Type) throws -> UInt32? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -711,7 +711,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: UInt64.Type) throws -> UInt64? {
+	  func unbox(_ value: YsonValue, as type: UInt64.Type) throws -> UInt64? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -725,7 +725,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Float.Type) throws -> Float? {
+	  func unbox(_ value: YsonValue, as type: Float.Type) throws -> Float? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -748,7 +748,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Double.Type) throws -> Double? {
+	  func unbox(_ value: YsonValue, as type: Double.Type) throws -> Double? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -771,7 +771,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: String.Type) throws -> String? {
+	  func unbox(_ value: YsonValue, as type: String.Type) throws -> String? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -783,7 +783,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonString.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Date.Type) throws -> Date? {
+	  func unbox(_ value: YsonValue, as type: Date.Type) throws -> Date? {
 		if value is YsonNull {
 			return nil
 		}
@@ -819,7 +819,7 @@ fileprivate extension _YsonDecoder {
 		}
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Data.Type) throws -> Data? {
+	  func unbox(_ value: YsonValue, as type: Data.Type) throws -> Data? {
 		if value is YsonNull {
 			return nil
 		}
@@ -839,7 +839,7 @@ fileprivate extension _YsonDecoder {
 
 	}
 
-	fileprivate func unbox(_ value: YsonValue, as type: Decimal.Type) throws -> Decimal? {
+	  func unbox(_ value: YsonValue, as type: Decimal.Type) throws -> Decimal? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -853,7 +853,7 @@ fileprivate extension _YsonDecoder {
 
 	}
 
-	fileprivate func unbox<T: Decodable>(_ value: YsonValue, as type: T.Type) throws -> T? {
+	  func unbox<T: Decodable>(_ value: YsonValue, as type: T.Type) throws -> T? {
 
 		if T.self == Date.self || T.self == NSDate.self {
 			guard let date = try self.unbox(value, as: Date.self) else {

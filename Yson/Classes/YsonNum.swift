@@ -37,59 +37,59 @@ public class YsonNum: YsonValue, ExpressibleByIntegerLiteral, ExpressibleByFloat
 }
 
 public extension YsonNum {
-	public convenience init(_ v: Float) {
+	  convenience init(_ v: Float) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Double) {
+	  convenience init(_ v: Double) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Decimal) {
+	  convenience init(_ v: Decimal) {
 		self.init(NSDecimalNumber(decimal: v))
 	}
 
-	public convenience init(_ v: CGFloat) {
+	  convenience init(_ v: CGFloat) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Int) {
+	  convenience init(_ v: Int) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: UInt) {
+	  convenience init(_ v: UInt) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Int8) {
+	  convenience init(_ v: Int8) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: UInt8) {
+	  convenience init(_ v: UInt8) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Int16) {
+	  convenience init(_ v: Int16) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: UInt16) {
+	  convenience init(_ v: UInt16) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Int32) {
+	  convenience init(_ v: Int32) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: UInt32) {
+	  convenience init(_ v: UInt32) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: Int64) {
+	convenience init(_ v: Int64) {
 		self.init(v.num)
 	}
 
-	public convenience init(_ v: UInt64) {
+	  convenience init(_ v: UInt64) {
 		self.init(v.num)
 	}
 

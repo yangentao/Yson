@@ -1,6 +1,6 @@
 {
   "name": "Yson",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "summary": "A Json writen by swift.",
   "description": "A Json writen by pure swift.",
   "homepage": "https://github.com/yangentao/Yson",
@@ -13,10 +13,15 @@
   },
   "source": {
     "git": "https://github.com/yangentao/Yson.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "Yson/Classes/**/*"
+  "swift_versions": [
+    "5.0"
+  ],
+  "source_files": "Yson/Classes/**/*",
+  "frameworks": "Foundation",
+  "swift_version": "5.0"
 }

@@ -21,10 +21,10 @@ public class Yson {
 }
 
 public extension String {
-	public var toYsonObject: YsonObject? {
+	var toYsonObject: YsonObject? {
 		return YsonObject(self)
 	}
-	public var toYsonArray: YsonArray? {
+	var toYsonArray: YsonArray? {
 		return YsonArray(self)
 	}
 }
