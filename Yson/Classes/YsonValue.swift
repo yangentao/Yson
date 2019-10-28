@@ -50,7 +50,7 @@ extension YsonValue: Equatable {
 
 extension YsonValue: CustomStringConvertible {
 	public var description: String {
-		return self.yson
+		self.yson
 	}
 }
 

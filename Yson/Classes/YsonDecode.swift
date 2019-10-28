@@ -34,7 +34,7 @@ class YsonDecoder {
 	}
 
 	fileprivate var options: _Options {
-		return _Options(dateDecodingStrategy: dateDecodingStrategy, nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy, userInfo: userInfo)
+		_Options(dateDecodingStrategy: dateDecodingStrategy, nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy, userInfo: userInfo)
 	}
 
 	public init() {
@@ -54,7 +54,7 @@ fileprivate class _YsonDecoder: Decoder {
 	fileprivate let options: YsonDecoder._Options
 	fileprivate(set) public var codingPath: [CodingKey]
 	public var userInfo: [CodingUserInfoKey: Any] {
-		return self.options.userInfo
+		self.options.userInfo
 	}
 
 	fileprivate init(referencing ysonValue: YsonValue, at codingPath: [CodingKey] = [], options: YsonDecoder._Options) {
@@ -89,7 +89,7 @@ fileprivate class _YsonDecoder: Decoder {
 	}
 
 	public func singleValueContainer() throws -> SingleValueDecodingContainer {
-		return self
+		self
 	}
 }
 
@@ -100,7 +100,7 @@ fileprivate struct _YsonDecodingStorage {
 	}
 
 	fileprivate var count: Int {
-		return self.stack.count
+		self.stack.count
 	}
 
 	fileprivate var top: YsonValue {
@@ -131,13 +131,13 @@ fileprivate struct _YsonObjectDecodingContainer<K: CodingKey>: KeyedDecodingCont
 	}
 
 	public var allKeys: [Key] {
-		return self.container.keys.compactMap {
+		self.container.keys.compactMap {
 			Key(stringValue: $0)
 		}
 	}
 
 	public func contains(_ key: Key) -> Bool {
-		return self.container.has(key.stringValue)
+		self.container.has(key.stringValue)
 	}
 
 	public func decodeNil(forKey key: Key) throws -> Bool {
@@ -146,59 +146,59 @@ fileprivate struct _YsonObjectDecodingContainer<K: CodingKey>: KeyedDecodingCont
 	}
 
 	public func decode(_ type: Bool.Type, forKey key: Key) throws -> Bool {
-		return try self.decodeOf(type, forKey: key) ?? false
+		try self.decodeOf(type, forKey: key) ?? false
 	}
 
 	public func decode(_ type: Int.Type, forKey key: Key) throws -> Int {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: Int8.Type, forKey key: Key) throws -> Int8 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: Int16.Type, forKey key: Key) throws -> Int16 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: Int32.Type, forKey key: Key) throws -> Int32 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: Int64.Type, forKey key: Key) throws -> Int64 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: UInt.Type, forKey key: Key) throws -> UInt {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: UInt8.Type, forKey key: Key) throws -> UInt8 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: UInt16.Type, forKey key: Key) throws -> UInt16 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: UInt32.Type, forKey key: Key) throws -> UInt32 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: UInt64.Type, forKey key: Key) throws -> UInt64 {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: Float.Type, forKey key: Key) throws -> Float {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: Double.Type, forKey key: Key) throws -> Double {
-		return try self.decodeOf(type, forKey: key) ?? 0
+		try self.decodeOf(type, forKey: key) ?? 0
 	}
 
 	public func decode(_ type: String.Type, forKey key: Key) throws -> String {
-		return try self.decodeOf(type, forKey: key) ?? ""
+		try self.decodeOf(type, forKey: key) ?? ""
 	}
 
 	private func decodeOf<T: Decodable>(_ type: T.Type, forKey key: Key) throws -> T? {
@@ -275,11 +275,11 @@ fileprivate struct _YsonObjectDecodingContainer<K: CodingKey>: KeyedDecodingCont
 	}
 
 	public func superDecoder() throws -> Decoder {
-		return try _superDecoder(forKey: _YsonKey.super)
+		try _superDecoder(forKey: _YsonKey.super)
 	}
 
 	public func superDecoder(forKey key: Key) throws -> Decoder {
-		return try _superDecoder(forKey: key)
+		try _superDecoder(forKey: key)
 	}
 }
 
@@ -297,11 +297,11 @@ fileprivate struct _YsonArrayDecodingContainer: UnkeyedDecodingContainer {
 	}
 
 	var count: Int? {
-		return self.container.count
+		self.container.count
 	}
 
 	var isAtEnd: Bool {
-		return self.currentIndex >= self.count!
+		self.currentIndex >= self.count!
 	}
 
 	mutating func decodeNil() throws -> Bool {
@@ -318,59 +318,59 @@ fileprivate struct _YsonArrayDecodingContainer: UnkeyedDecodingContainer {
 	}
 
 	mutating func decode(_ type: Bool.Type) throws -> Bool {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Int.Type) throws -> Int {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Int8.Type) throws -> Int8 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Int16.Type) throws -> Int16 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Int32.Type) throws -> Int32 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Int64.Type) throws -> Int64 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: UInt.Type) throws -> UInt {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: UInt8.Type) throws -> UInt8 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: UInt16.Type) throws -> UInt16 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: UInt32.Type) throws -> UInt32 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: UInt64.Type) throws -> UInt64 {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Float.Type) throws -> Float {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: Double.Type) throws -> Double {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decode(_ type: String.Type) throws -> String {
-		return try self.decodeOf(type)
+		try self.decodeOf(type)
 	}
 
 	mutating func decodeOf<T: Decodable>(_ type: T.Type) throws -> T {
@@ -481,7 +481,7 @@ extension _YsonDecoder: SingleValueDecodingContainer {
 	}
 
 	func decodeNil() -> Bool {
-		return self.storage.top is YsonNull
+		self.storage.top is YsonNull
 	}
 
 	func decode(_ type: Bool.Type) throws -> Bool {
@@ -561,7 +561,7 @@ extension _YsonDecoder: SingleValueDecodingContainer {
 }
 
 fileprivate extension _YsonDecoder {
-	  func unbox(_ value: YsonValue, as type: Bool.Type) throws -> Bool? {
+	func unbox(_ value: YsonValue, as type: Bool.Type) throws -> Bool? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -584,7 +584,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonBool.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Int.Type) throws -> Int? {
+	func unbox(_ value: YsonValue, as type: Int.Type) throws -> Int? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -599,7 +599,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Int8.Type) throws -> Int8? {
+	func unbox(_ value: YsonValue, as type: Int8.Type) throws -> Int8? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -613,7 +613,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Int16.Type) throws -> Int16? {
+	func unbox(_ value: YsonValue, as type: Int16.Type) throws -> Int16? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -627,7 +627,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Int32.Type) throws -> Int32? {
+	func unbox(_ value: YsonValue, as type: Int32.Type) throws -> Int32? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -641,7 +641,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Int64.Type) throws -> Int64? {
+	func unbox(_ value: YsonValue, as type: Int64.Type) throws -> Int64? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -655,7 +655,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: UInt.Type) throws -> UInt? {
+	func unbox(_ value: YsonValue, as type: UInt.Type) throws -> UInt? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -669,7 +669,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: UInt8.Type) throws -> UInt8? {
+	func unbox(_ value: YsonValue, as type: UInt8.Type) throws -> UInt8? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -683,7 +683,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: UInt16.Type) throws -> UInt16? {
+	func unbox(_ value: YsonValue, as type: UInt16.Type) throws -> UInt16? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -697,7 +697,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: UInt32.Type) throws -> UInt32? {
+	func unbox(_ value: YsonValue, as type: UInt32.Type) throws -> UInt32? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -711,7 +711,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: UInt64.Type) throws -> UInt64? {
+	func unbox(_ value: YsonValue, as type: UInt64.Type) throws -> UInt64? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -725,7 +725,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Float.Type) throws -> Float? {
+	func unbox(_ value: YsonValue, as type: Float.Type) throws -> Float? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -748,7 +748,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Double.Type) throws -> Double? {
+	func unbox(_ value: YsonValue, as type: Double.Type) throws -> Double? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -771,7 +771,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonNum.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: String.Type) throws -> String? {
+	func unbox(_ value: YsonValue, as type: String.Type) throws -> String? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -783,7 +783,7 @@ fileprivate extension _YsonDecoder {
 		throw DecodingError.typeMismatch(YsonString.self, DecodingError.Context(codingPath: self.codingPath, debugDescription: ""))
 	}
 
-	  func unbox(_ value: YsonValue, as type: Date.Type) throws -> Date? {
+	func unbox(_ value: YsonValue, as type: Date.Type) throws -> Date? {
 		if value is YsonNull {
 			return nil
 		}
@@ -819,7 +819,7 @@ fileprivate extension _YsonDecoder {
 		}
 	}
 
-	  func unbox(_ value: YsonValue, as type: Data.Type) throws -> Data? {
+	func unbox(_ value: YsonValue, as type: Data.Type) throws -> Data? {
 		if value is YsonNull {
 			return nil
 		}
@@ -839,7 +839,7 @@ fileprivate extension _YsonDecoder {
 
 	}
 
-	  func unbox(_ value: YsonValue, as type: Decimal.Type) throws -> Decimal? {
+	func unbox(_ value: YsonValue, as type: Decimal.Type) throws -> Decimal? {
 		switch value {
 		case is YsonNull:
 			return nil
@@ -853,7 +853,7 @@ fileprivate extension _YsonDecoder {
 
 	}
 
-	  func unbox<T: Decodable>(_ value: YsonValue, as type: T.Type) throws -> T? {
+	func unbox<T: Decodable>(_ value: YsonValue, as type: T.Type) throws -> T? {
 
 		if T.self == Date.self || T.self == NSDate.self {
 			guard let date = try self.unbox(value, as: Date.self) else {

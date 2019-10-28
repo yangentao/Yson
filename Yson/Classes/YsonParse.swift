@@ -49,7 +49,7 @@ func escapeJson(_ s: String) -> String {
 fileprivate extension Character {
 
 	var isWhite: Bool {
-		return WHITE.contains(self)
+		WHITE.contains(self)
 	}
 }
 
@@ -268,7 +268,7 @@ class YParser {
 	}
 
 	fileprivate var end: Bool {
-		return current >= data.count
+		current >= data.count
 	}
 
 	fileprivate func shouldEnd() -> Bool {
@@ -287,7 +287,7 @@ class YParser {
 	}
 
 	fileprivate var currentChar: Character {
-		return data[current]
+		data[current]
 	}
 
 	fileprivate func next() {
@@ -295,7 +295,7 @@ class YParser {
 	}
 
 	fileprivate func isChar(_ c: Character) -> Bool {
-		return currentChar == c
+		currentChar == c
 	}
 
 	fileprivate func tokenc(_ c: Character) throws {

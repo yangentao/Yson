@@ -36,7 +36,7 @@ public class YsonObject: YsonValue, ExpressibleByDictionaryLiteral {
 
 	public subscript(key: String) -> YsonValue {
 		get {
-			return self.data[key] ?? YsonNull.inst
+			self.data[key] ?? YsonNull.inst
 		}
 		set {
 			self.data[key] = newValue
@@ -45,7 +45,7 @@ public class YsonObject: YsonValue, ExpressibleByDictionaryLiteral {
 
 	public subscript(dynamicMember member: String) -> String? {
 		get {
-			return (data[member] as? YsonString)?.data
+			(data[member] as? YsonString)?.data
 		}
 		set {
 			if let v = newValue {
@@ -72,7 +72,7 @@ public class YsonObject: YsonValue, ExpressibleByDictionaryLiteral {
 	}
 	public subscript(dynamicMember member: String) -> Double? {
 		get {
-			return (data[member] as? YsonNum)?.data.doubleValue
+			(data[member] as? YsonNum)?.data.doubleValue
 
 		}
 		set {
@@ -102,11 +102,11 @@ public class YsonObject: YsonValue, ExpressibleByDictionaryLiteral {
 	}
 
 	public var keys: [String] {
-		return Array<String>(self.data.keys)
+		Array<String>(self.data.keys)
 	}
 
 	public func has(_ key: String) -> Bool {
-		return self.data[key] != nil
+		self.data[key] != nil
 	}
 
 	public func put(_ key: String, _ value: Any?) {
@@ -180,7 +180,7 @@ public class YsonObject: YsonValue, ExpressibleByDictionaryLiteral {
 
 extension YsonObject: Sequence {
 	public func makeIterator() -> DictionaryIterator<String, YsonValue> {
-		return data.makeIterator()
+		data.makeIterator()
 	}
 }
 

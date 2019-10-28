@@ -62,37 +62,37 @@ public class YsonArray: YsonValue, ExpressibleByArrayLiteral {
 
 extension YsonArray: Sequence {
 	public func makeIterator() -> IndexingIterator<[YsonValue]>.Iterator {
-		return data.makeIterator()
+		data.makeIterator()
 	}
 }
 
 public extension YsonArray {
 
-	  var count: Int {
-		return data.count
+	var count: Int {
+		data.count
 	}
 
-	  func append(_ value: Bool) {
+	func append(_ value: Bool) {
 		data.append(YsonBool(value))
 	}
 
-	  func append(_ value: String) {
+	func append(_ value: String) {
 		data.append(YsonString(value))
 	}
 
-	  func appendNull() {
+	func appendNull() {
 		data.append(YsonNull.inst)
 	}
 
-	  func append(_ value: YsonValue) {
+	func append(_ value: YsonValue) {
 		data.append(value)
 	}
 
-	  func add(_ v: YsonValue) {
+	func add(_ v: YsonValue) {
 		data.append(v)
 	}
 
-	  var firstObject: YsonObject? {
+	var firstObject: YsonObject? {
 		if !self.data.isEmpty {
 			return self[0] as? YsonObject
 		}
@@ -103,86 +103,86 @@ public extension YsonArray {
 
 public extension YsonArray {
 
-	  func append(_ value: UInt64) {
+	func append(_ value: UInt64) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Int64) {
+	func append(_ value: Int64) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Int32) {
+	func append(_ value: Int32) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: UInt32) {
+	func append(_ value: UInt32) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Int16) {
+	func append(_ value: Int16) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: UInt16) {
+	func append(_ value: UInt16) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Int8) {
+	func append(_ value: Int8) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: UInt8) {
+	func append(_ value: UInt8) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Int) {
+	func append(_ value: Int) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: UInt) {
+	func append(_ value: UInt) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Double) {
+	func append(_ value: Double) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: Float) {
+	func append(_ value: Float) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: CGFloat) {
+	func append(_ value: CGFloat) {
 		data.append(YsonNum(value))
 	}
 
-	  func append(_ value: NSNumber) {
+	func append(_ value: NSNumber) {
 		data.append(YsonNum(value))
 	}
 }
 
 public extension YsonArray {
-	  var arrayInt: [Int] {
-		return self.data.map {
+	var arrayInt: [Int] {
+		self.data.map {
 			($0 as! YsonNum).data.intValue
 		}
 	}
-	  var arrayDouble: [Double] {
-		return self.data.map {
+	var arrayDouble: [Double] {
+		self.data.map {
 			($0 as! YsonNum).data.doubleValue
 		}
 	}
-	  var arrayString: [String] {
-		return self.data.map {
+	var arrayString: [String] {
+		self.data.map {
 			($0 as! YsonString).data
 		}
 	}
-	  var arrayObject: [YsonObject] {
-		return self.data.map {
+	var arrayObject: [YsonObject] {
+		self.data.map {
 			$0 as! YsonObject
 		}
 	}
 
-	  func arrayModel<V: Decodable>() -> [V] {
+	func arrayModel<V: Decodable>() -> [V] {
 		var ls = [V]()
 		for ob in self.arrayObject {
 			if let m: V = ob.toModel() {

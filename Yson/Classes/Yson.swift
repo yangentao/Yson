@@ -8,24 +8,24 @@ import UIKit
 
 public class Yson {
 	public static func parse(_ json: String) -> YsonValue? {
-		return YParser.parseValue(json)
+		YParser.parseValue(json)
 	}
 
 	public static func parseObject(_ json: String) -> YsonObject? {
-		return YParser.parseObject(json)
+		YParser.parseObject(json)
 	}
 
 	public static func parseArray(_ json: String) -> YsonArray? {
-		return YParser.parseArray(json)
+		YParser.parseArray(json)
 	}
 }
 
 public extension String {
 	var toYsonObject: YsonObject? {
-		return YsonObject(self)
+		YsonObject(self)
 	}
 	var toYsonArray: YsonArray? {
-		return YsonArray(self)
+		YsonArray(self)
 	}
 }
 

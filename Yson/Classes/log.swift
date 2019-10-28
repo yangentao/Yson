@@ -15,7 +15,7 @@ func printA(_ items: Any...) {
 
 func println(_ items: Any...) {
 	for a in items {
-		print(a, terminator: "")
+		print(a, terminator: " ")
 	}
 	print("")
 }

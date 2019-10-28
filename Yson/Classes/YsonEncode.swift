@@ -48,7 +48,7 @@ class YsonEncoder {
 	}
 
 	fileprivate var options: _Options {
-		return _Options(dateEncodingStrategy: dateEncodingStrategy, nonConformingFloatEncodingStrategy: nonConformingFloatEncodingStrategy, userInfo: userInfo)
+		_Options(dateEncodingStrategy: dateEncodingStrategy, nonConformingFloatEncodingStrategy: nonConformingFloatEncodingStrategy, userInfo: userInfo)
 	}
 
 	init() {
@@ -69,7 +69,7 @@ fileprivate class _YsonEncoder: Encoder {
 	fileprivate let options: YsonEncoder._Options
 	var codingPath: [CodingKey]
 	var userInfo: [CodingUserInfoKey: Any] {
-		return self.options.userInfo
+		self.options.userInfo
 	}
 
 	fileprivate init(options: YsonEncoder._Options, codingPath: [CodingKey] = []) {
@@ -87,7 +87,7 @@ fileprivate class _YsonEncoder: Encoder {
 		//
 		// This means that anytime something that can request a new container goes onto the stack, we MUST push a key onto the coding path.
 		// Things which will not request containers do not need to have the coding path extended for them (but it doesn't matter if it is, because they will not reach here).
-		return self.storage.count == self.codingPath.count
+		self.storage.count == self.codingPath.count
 	}
 
 	func container<Key>(keyedBy: Key.Type) -> KeyedEncodingContainer<Key> {
@@ -118,7 +118,7 @@ fileprivate class _YsonEncoder: Encoder {
 	}
 
 	func singleValueContainer() -> SingleValueEncodingContainer {
-		return self
+		self
 	}
 }
 
@@ -129,7 +129,7 @@ fileprivate struct _YsonEncodingStorage {
 	}
 
 	fileprivate var count: Int {
-		return self.stack.count
+		self.stack.count
 	}
 
 	fileprivate mutating func pushObject() -> YsonObject {
@@ -271,11 +271,11 @@ fileprivate struct _YsonObjectEncodingContainer<K: CodingKey>: KeyedEncodingCont
 	}
 
 	mutating func superEncoder() -> Encoder {
-		return _YsonReferencingEncoder(referencing: self.encoder, at: _YsonKey.super, wrapping: self.container)
+		_YsonReferencingEncoder(referencing: self.encoder, at: _YsonKey.super, wrapping: self.container)
 	}
 
 	mutating func superEncoder(forKey key: Key) -> Encoder {
-		return _YsonReferencingEncoder(referencing: self.encoder, at: key, wrapping: self.container)
+		_YsonReferencingEncoder(referencing: self.encoder, at: key, wrapping: self.container)
 	}
 }
 
@@ -285,7 +285,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 	private(set) public var codingPath: [CodingKey]
 
 	var count: Int {
-		return self.container.count
+		self.container.count
 	}
 
 	fileprivate init(referencing encoder: _YsonEncoder, codingPath: [CodingKey], wrapping container: YsonArray) {
@@ -394,7 +394,7 @@ fileprivate struct _YsonArrayEncodingContainer: UnkeyedEncodingContainer {
 	}
 
 	mutating func superEncoder() -> Encoder {
-		return _YsonReferencingEncoder(referencing: self.encoder, at: self.container.count, wrapping: self.container)
+		_YsonReferencingEncoder(referencing: self.encoder, at: self.container.count, wrapping: self.container)
 	}
 }
 
@@ -485,55 +485,55 @@ extension _YsonEncoder: SingleValueEncodingContainer {
 }
 
 fileprivate extension _YsonEncoder {
-	  func box(_ value: Bool) -> YsonValue {
-		return YsonBool(value)
+	func box(_ value: Bool) -> YsonValue {
+		YsonBool(value)
 	}
 
-	  func box(_ value: Int) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: Int) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: Int8) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: Int8) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: Int16) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: Int16) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: Int32) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: Int32) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: Int64) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: Int64) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: UInt) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: UInt) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: UInt8) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: UInt8) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: UInt16) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: UInt16) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: UInt32) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: UInt32) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: UInt64) -> YsonValue {
-		return YsonNum(value)
+	func box(_ value: UInt64) -> YsonValue {
+		YsonNum(value)
 	}
 
-	  func box(_ value: String) -> YsonValue {
-		return YsonString(value)
+	func box(_ value: String) -> YsonValue {
+		YsonString(value)
 	}
 
-	  func box(_ float: Float) throws -> YsonValue {
+	func box(_ float: Float) throws -> YsonValue {
 		guard !float.isInfinite && !float.isNaN else {
 			guard case let .convertToString(positiveInfinity:posInfString, negativeInfinity:negInfString, nan:nanString) = self.options.nonConformingFloatEncodingStrategy else {
 				throw EncodingError._invalidFloatingPointValue(float, at: codingPath)
@@ -551,7 +551,7 @@ fileprivate extension _YsonEncoder {
 		return YsonNum(float)
 	}
 
-	  func box(_ double: Double) throws -> YsonValue {
+	func box(_ double: Double) throws -> YsonValue {
 		guard !double.isInfinite && !double.isNaN else {
 			guard case let .convertToString(positiveInfinity:posInfString, negativeInfinity:negInfString, nan:nanString) = self.options.nonConformingFloatEncodingStrategy else {
 				throw EncodingError._invalidFloatingPointValue(double, at: codingPath)
@@ -569,7 +569,7 @@ fileprivate extension _YsonEncoder {
 		return YsonNum(double)
 	}
 
-	  func box(_ date: Date) throws -> YsonValue {
+	func box(_ date: Date) throws -> YsonValue {
 		switch self.options.dateEncodingStrategy {
 		case .deferredToDate:
 			// Must be called with a surrounding with(pushedKey:) call.
@@ -599,16 +599,16 @@ fileprivate extension _YsonEncoder {
 		}
 	}
 
-	  func box(_ data: Data) throws -> YsonValue {
-		return YsonBlob(data)
+	func box(_ data: Data) throws -> YsonValue {
+		YsonBlob(data)
 	}
 
-	  func box<T: Encodable>(_ value: T) throws -> YsonValue {
-		return try self.box_(value) ?? YsonObject()
+	func box<T: Encodable>(_ value: T) throws -> YsonValue {
+		try self.box_(value) ?? YsonObject()
 	}
 
 	// This method is called "box_" instead of "box" to disambiguate it from the overloads. Because the return type here is different from all of the "box" overloads (and is more general), any "box" calls in here would call back into "box" recursively instead of calling the appropriate overload, which is not what we want.
-	  func box_<T: Encodable>(_ value: T) throws -> YsonValue? {
+	func box_<T: Encodable>(_ value: T) throws -> YsonValue? {
 		switch value {
 		case let d as Data:
 			return try self.box(d)
@@ -654,10 +654,10 @@ fileprivate class _YsonReferencingEncoder: _YsonEncoder {
 		case dictionary(YsonObject, String)
 	}
 
-	  let encoder: _YsonEncoder
+	let encoder: _YsonEncoder
 	private let reference: Reference
 
-	  init(referencing encoder: _YsonEncoder, at index: Int, wrapping array: YsonArray) {
+	init(referencing encoder: _YsonEncoder, at index: Int, wrapping array: YsonArray) {
 		self.encoder = encoder
 		self.reference = .array(array, index)
 		super.init(options: encoder.options, codingPath: encoder.codingPath)
@@ -666,7 +666,7 @@ fileprivate class _YsonReferencingEncoder: _YsonEncoder {
 	}
 
 	/// Initializes `self` by referencing the given dictionary container in the given encoder.
-	  init(referencing encoder: _YsonEncoder, at key: CodingKey, wrapping dictionary: YsonObject) {
+	init(referencing encoder: _YsonEncoder, at key: CodingKey, wrapping dictionary: YsonObject) {
 		self.encoder = encoder
 		self.reference = .dictionary(dictionary, key.stringValue)
 		super.init(options: encoder.options, codingPath: encoder.codingPath)
@@ -674,11 +674,11 @@ fileprivate class _YsonReferencingEncoder: _YsonEncoder {
 		self.codingPath.append(key)
 	}
 
-	  override var canEncodeNewValue: Bool {
+	override var canEncodeNewValue: Bool {
 		// With a regular encoder, the storage and coding path grow together.
 		// A referencing encoder, however, inherits its parents coding path, as well as the key it was created for.
 		// We have to take this into account.
-		return self.storage.count == self.codingPath.count - self.encoder.codingPath.count - 1
+		self.storage.count == self.codingPath.count - self.encoder.codingPath.count - 1
 	}
 
 	// MARK: - Deinitialization
@@ -726,7 +726,7 @@ struct _YsonKey: CodingKey {
 
 fileprivate extension EncodingError {
 
-	  static func _invalidFloatingPointValue<T: FloatingPoint>(_ value: T, at codingPath: [CodingKey]) -> EncodingError {
+	static func _invalidFloatingPointValue<T: FloatingPoint>(_ value: T, at codingPath: [CodingKey]) -> EncodingError {
 		let valueDescription: String
 		if value == T.infinity {
 			valueDescription = "\(T.self).infinity"
