@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Yson'
-  s.version          = '1.1.2'
+  s.version          = '1.2.0'
   s.summary          = 'A Json writen by swift.'
 
 # This description is used to generate tags and improve search results.
@@ -28,8 +28,8 @@ A Json writen by pure swift.
   s.source           = { :git => 'https://github.com/yangentao/Yson.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
-  s.swift_versions = ["5.0"]
+  s.ios.deployment_target = '11.0'
+  s.swift_versions = ["5.0", "5.1", "5.2", "5.3"]
 
   s.source_files = 'Yson/Classes/**/*'
   

@@ -1,5 +1,5 @@
 PODS:
-  - Yson (1.1.1)
+  - Yson (1.1.2)
 
 DEPENDENCIES:
   - Yson (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Yson: 7f6213fc74517e39954b61262c034d9b4a578b83
+  Yson: dd0f4926015c6fe6e22fa2e4395dd077dc9fd5a3
 
 PODFILE CHECKSUM: c4471a3de1058a13ff2a09b588e98124c483d2e5
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0
